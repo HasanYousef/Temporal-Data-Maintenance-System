@@ -1,0 +1,25 @@
+{
+  "name": "Temporal-Data-Maintenance-System",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js -e js,html,css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HasanYousef/Temporal-Data-Maintenance-System.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HasanYousef/Temporal-Data-Maintenance-System/issues"
+  },
+  "homepage": "https://github.com/HasanYousef/Temporal-Data-Maintenance-System#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13"
+  }
+}

@@ -4,11 +4,12 @@ const mongoose = require('mongoose');
 //const schema = require('./schema/schema');
 //const keys = require('./config/keys');
 
-// setting the uploads folder to public
-//express.static('uploads');                  //????????????????????????????
-
 const app = express();
 app.listen(process.env.PORT || 3001, () => { console.log('Server Up') });
+
+
+// setting the images and styles folder to public
+app.use(express.static('public'));
 
 //-----------------------------------------------DB
 // second argument is just for removing a warning

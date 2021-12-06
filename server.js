@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 //const keys = require('./config/keys');
 
 const app = express();
-app.listen(process.env.PORT || 3001, () => { console.log('Server Up') });
+app.listen(process.env.PORT || 3000, () => { console.log('Server Up') });
 
 
 // setting the images and styles folder to public

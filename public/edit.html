@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/mycss.css">
+    <title>TDMS | Edit</title>
+    <link rel="icon" href="/static/logo.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+    <body class="container">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container-fluid">
+                  <a class="navbar-brand" href="/">
+                      <img src="/static/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" />
+                      TDMS
+                  </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/read">Read Data</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="/edit">Edit Data</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+        </header>
+        <form style="margin: 32px 0 0 16px;">
+            <div class="form-group" style="margin-bottom: 16px;">
+              <input type="file" accept=".xlsx" class="form-control-file" id="uploadFile">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="add" checked>
+                <label class="form-check-label" for="exampleRadios1">
+                  Add to the existing data
+                </label>
+            </div>
+            <div class="form-check" style="margin-bottom: 16px;">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="replace">
+                <label class="form-check-label" for="exampleRadios2">
+                  Replace the existing data
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </body>
+</html>
+
+<script src="./scripts"></script>

@@ -1,6 +1,6 @@
 async function submitFile() {
     const file = document.getElementById("uploadFile").files[0];
-    const shouldReplace = document.getElementById("addChoice").checked;
+    const shouldReplace = document.getElementById("replaceChoice").checked;
     
     var data = new FormData()
     data.append('file', file);

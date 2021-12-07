@@ -36,33 +36,33 @@ router.post('/file', uploadFile.single('file'), async (req, res, next) => {
   if(fs.existsSync(path)) {
     const src = XLSX.readFile(path);
     // parse the file into array of arrays (each row is an array)
-    data = XLSX.utils.sheet_to_json(src.Sheets[src.SheetNames[0]], {header:1});
+    let data = XLSX.utils.sheet_to_json(src.Sheets[src.SheetNames[0]], {header:1});
     // remove the first row (header) and every empty row
-    data = data.filter((row, index) => (index === 0 || row.length > 0));
-    
-    // starting a transaction in the DB (so we can rollback if something bad happened while entering the new data)
-    const session = await Event.startSession();
-    session.startTransaction();
+    data = data.filter((row, index) => (index !== 0 && row.length > 0));
+    // convert data from array of arrays (array of rows) to array of event objects (formated to the event schema)
+    data = data.map(row => ({
+      firstName: row[0],
+      lastName: row[1],
+      loincNum: row[2],
+      value: row[3],
+      unit: row[4],
+      validStartTime: row[5],
+      transactionTime: row[6],
+    }));
 
     try {
       // if the client wants to replace all the stored data with the new data
-      if(req.body.shouldReplace) {
-        console.log('REPLACE');
+      if(req.body.shouldReplace === 'true') {
+        // remove all the previous data
+        await Event.deleteMany({});
       }
-      // if the client wants to add the new data to the existing data
-      else {
-        console.log('ADD');
-      }
-      await session.commitTransaction();
-      session.endSession();
+      // add the new data to the DB
+      await Event.insertMany(data);
       // delete the file from the files system (we don't need it anymore)
       fs.unlinkSync(path);
       res.send('success');
     }
     catch {
-      // If an error occurred, abort the whole transaction and undo any changes that might have happened
-      await session.abortTransaction();
-      session.endSession();
       // delete the file if it still exists
       if(fs.existsSync(path))
         fs.unlinkSync(path);

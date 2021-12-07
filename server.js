@@ -1,8 +1,7 @@
+// loading the environment variables (DB username, password, URL...)
+require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
-
-//const schema = require('./schema/schema');
-//const keys = require('./config/keys');
 
 const app = express();
 app.listen(process.env.PORT || 3000, () => { console.log('Server Up') });
@@ -13,13 +12,9 @@ app.use(express.static('public'));
 
 //-----------------------------------------------DB
 // second argument is just for removing a warning
-/*
-mongoose.connect(keys.mongo.dbURL, { useUnifiedTopology: true, useNewUrlParser: true, autoIndex: true }).then(() => {
+mongoose.connect(process.env.DB_URL, { useUnifiedTopology: true, useNewUrlParser: true, autoIndex: true }).then(() => {
   console.log('connected to DB');
 }).catch(err => console.error(err));
-mongoose.set('useCreateIndex', true);
-mongoose.set('useFindAndModify', false);
-*/
 
 //-----------------------------------------------api developer tests
 app.use('/', require('./routes'));

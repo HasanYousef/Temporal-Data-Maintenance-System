@@ -29,13 +29,18 @@ const EventSchema = new Schema({
   },
 
   validStartTime: {
-    type: String,
+    type: Date,
     reuired: true,
   },
 
   transactionTime: {
-    type: String,
+    type: Date,
     reuired: true,
+  },
+
+  deletedAt: {
+    type: Date,
+    default: null,
   },
 
 }, { timestamps: true });   // this will add a time field for which time the event entered the DB (not the given transaction time)

@@ -4,21 +4,41 @@ const fetch = require("node-fetch");
 let base64 = require('base-64');
 
 router.use('/upload', require('./upload'));
+const Event = require('../models/event');
 
-router.get('/read', async (req, res) => {
+router.get('/search', async (req, res) => {
     if(req.query.name) {
 
     }
-    await codeToLongCommonName(code);
-    res.sendFile(path.join(__dirname, '../public/read.html'));
+    await codeToLongCommonName('code');
+    res.sendFile(path.join(__dirname, '../public/search.html'));
 });
 
 router.get('/edit', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/edit.html'));
 });
 
+router.get('/all', async (req, res) => {
+    const data = await Event.find({});
+    res.send({
+        count: data.length,
+        data,
+    });
+});
+
+router.get('/query', async (req, res) => {
+    const query = req.query;
+    const name = query.patientName.split(' ');
+    if(name.length !== 2)
+        return {};
+    let dbQuery = {
+        loincNum: query.loincCode,
+    };
+    res.send(await Event.find(dbQuery)[0]);
+});
+
 router.use('/', (req, res) => {
-    res.redirect('/read');
+    res.redirect('/search');
 });
 
 async function codeToLongCommonName(code) {
@@ -28,11 +48,11 @@ async function codeToLongCommonName(code) {
             'Authorization': 'Basic ' + base64.encode(`${process.env.LOINC_USERNAME}:${process.env.LOINC_PASSWORD}`),
         });
         const response = await fetch(
-            `https://fhir.loinc.org/CodeSystem/$lookup?code=${code}&system=http%3A%2F%2Floinc.org&_format=json`,
+            `https://fhir.loinc.org/CodeSystem/$lookup?system=http%3A%2F%2Floinc.org&_format=json&code=${code}`,
             { headers },
         );
         // takes the LONG COMMON NAME from the response
-        return (await response.json()).parameter[1].valueString;
+        return response.ok ? (await response.json()).parameter[1].valueString : null;
     }
     catch(err) {
         console.log(err)

@@ -37,6 +37,8 @@ async function query() {
             query.date = date;
         if(time)
             query.time = time;
+        if(patientName.split(' ').length !== 2)
+            throw 'Invalid name format'
         query.patientName = patientName;
         query.loincCode = loincCode;
         if(validDate)
@@ -46,6 +48,43 @@ async function query() {
         let url = new URL('/query', document.baseURI);
         url.search = new URLSearchParams(query).toString();
         let response = await fetch(url);
+        if(response.ok){
+            response = await response.json();
+            console.log(response);
+        }
+        else
+            throw 'bad';
+    }
+    catch(err) {
+        // code for giving the user a feedback that there is something wrong happened
+        console.log(err);
+    }
+}
+
+async function deleteEvent() {
+    const date = document.getElementById("date").value,
+        time = document.getElementById("time").value,
+        patientName = document.getElementById("patientName").value,
+        loincCode = document.getElementById("loincCode").value,
+        validDate = document.getElementById("validDate").value,
+        validTime = document.getElementById("validTime").value;
+    
+    try {
+        let deleteQuery = {
+            date,
+            time,
+            patientName,
+            loincCode,validDate,
+            validTime,
+        };
+        let response = await fetch('/delete', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(deleteQuery),
+        });
         if(response.ok){
             response = await response.json();
             console.log(response);

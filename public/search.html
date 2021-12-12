@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/mycss.css">
-    <title>TDMS | Search</title>
+    <title>clinic | Search</title>
     <link rel="icon" href="/static/logo.png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
@@ -19,7 +19,7 @@
               <div class="container-fluid">
                   <a class="navbar-brand" href="/">
                       <img src="/static/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" />
-                      TDMS
+                      clinic
                   </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -37,21 +37,23 @@
               </div>
             </nav>
         </header>
-        <div style="margin: 32px 0 0 16px;">
+        <div style="margin: 32px 0 0 16px; max-width: 700px;">
+          <h1>Search</h1>
+          <hr class="mt-0 mb-4">
 
-          <label  class="d-block mt-3">Time of query (default: now)</label>
-          <input type="date" id="date" class="form-control">
-          <input type="time" id="time" class="form-control d-block mt-1">
+          <label class="d-block mt-3">Time of query (default: now)</label>
+          <input type="date" id="date" class="form-control" value="2018-05-22">
+          <input type="time" id="time" class="form-control d-block mt-1" value="15:00">
 
           <label for="patientName" class="d-block mt-3">Patient name</label>
-          <input class="form-control" id="patientName" placeholder="e.g. BoJack Horseman">
+          <input class="form-control" id="patientName" placeholder="e.g. BoJack Horseman" value="Eyal Rothman">
 
           <label for="loincCode" class="d-block mt-3">LOINC code</label>
-          <input class="form-control" id="loincCode" placeholder="e.g. 11218-5">
+          <input class="form-control" id="loincCode" placeholder="e.g. 11218-5" value="14743-9">
           
           <label  class="d-block mt-3">Valid start time</label>
-          <input type="date" id="validDate" class="form-control">
-          <input type="time" id="validTime" class="form-control d-block mt-1">
+          <input type="date" id="validDate" class="form-control" value="2018-05-17">
+          <input type="time" id="validTime" class="form-control d-block mt-1" value="21:00">
 
           <button onclick="query()" class="btn btn-primary d-block mt-3">Search</button>
 

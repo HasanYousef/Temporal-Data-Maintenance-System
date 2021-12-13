@@ -65,19 +65,15 @@
             <h1>Delete an Event</h1>
             <hr class="mt-0 mb-4">
 
-            <label class="d-block mt-3">Time of Delete (default: now)</label>
-            <input type="date" id="date" class="form-control">
-            <input type="time" id="time" class="form-control d-block mt-1">
-  
             <label for="patientName" class="d-block mt-3">Patient name</label>
-            <input class="form-control" id="patientName" placeholder="e.g. BoJack Horseman">
+            <input class="form-control" id="patientName" placeholder="e.g. BoJack Horseman" value="Eyal Rothman">
   
             <label for="loincCode" class="d-block mt-3">LOINC code</label>
-            <input class="form-control" id="loincCode" placeholder="e.g. 11218-5">
+            <input class="form-control" id="loincCode" placeholder="e.g. 11218-5" value="14743-9">
             
             <label  class="d-block mt-3">Valid start time</label>
-            <input type="date" id="validDate" class="form-control">
-            <input type="time" id="validTime" class="form-control d-block mt-1">
+            <input type="date" id="validDate" class="form-control" value="2018-05-18">
+            <input type="time" id="validTime" class="form-control d-block mt-1" value="02:00">
   
             <button onclick="deleteEvent()" class="btn btn-primary d-block mt-3">Delete</button>
           </div>

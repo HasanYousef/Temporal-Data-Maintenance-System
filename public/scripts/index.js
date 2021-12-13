@@ -1,6 +1,11 @@
 async function submitFile() {
     const file = document.getElementById("uploadFile").files[0];
     const shouldReplace = document.getElementById("replaceChoice").checked;
+
+    let dngr = document.getElementById('upload-danger'),
+        succ = document.getElementById('upload-success');
+    dngr.classList.add('d-none');
+    succ.classList.add('d-none');
     
     try {
         let data = new FormData()
@@ -12,14 +17,14 @@ async function submitFile() {
         });
         response = await response.text();
         if(response === 'success') {
-            window.location.href = '/';
+            succ.classList.remove('d-none');
         }
         else {
             throw response;
         }
     }
     catch(err) {
-        // code for giving the user a feedback that there is something wrong happened
+        dngr.classList.remove('d-none');
     }
 }
 
@@ -101,8 +106,6 @@ async function query() {
             throw 'bad';
     }
     catch(err) {
-        // code for giving the user a feedback that there is something wrong happened
-        console.log(err);
     }
 }
 
@@ -111,6 +114,12 @@ async function deleteEvent() {
         loincCode = document.getElementById("loincCode").value,
         validDate = document.getElementById("validDate").value,
         validTime = document.getElementById("validTime").value;
+        
+    let dngr = document.getElementById('delete-danger'),
+        succ = document.getElementById('delete-success');
+
+    dngr.classList.add('d-none');
+    succ.classList.add('d-none');
     
     try {
         let deleteQuery = {
@@ -127,14 +136,13 @@ async function deleteEvent() {
             body: JSON.stringify(deleteQuery),
         });
         if(response.ok){
-            window.location.href = '/';
+            succ.classList.remove('d-none');
         }
         else{
             throw 'bad';
         }
     }
-    catch(err) {
-        // code for giving the user a feedback that there is something wrong happened
-        console.log(err);
+    catch {
+        dngr.classList.remove('d-none');
     }
 }

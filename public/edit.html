@@ -37,7 +37,7 @@
               </div>
             </nav>
         </header>
-        <div style="margin: 32px 0 0 16px; max-width: 700px;">
+        <div class="mb-5" style="margin: 32px 0 0 16px; max-width: 700px;">
 
           <div class="mb-5">
             <h1>Upload Data</h1>
@@ -58,7 +58,15 @@
                     Replace the existing data
                   </label>
               </div>
-              <button onclick="submitFile()" class="btn btn-primary">Submit</button>    
+              <button onclick="submitFile()" class="btn btn-primary mb-3">Submit</button>
+              
+              <div id="upload-danger" class="alert alert-danger d-none" role="alert">
+                Something went wrong, make sure tha the file is in the right format!
+              </div>
+              <div id="upload-success" class="alert alert-success d-none" role="alert">
+                Data uploaded successfully!
+              </div>
+
           </div>
 
           <div>
@@ -75,7 +83,14 @@
             <input type="date" id="validDate" class="form-control" value="2018-05-18">
             <input type="time" id="validTime" class="form-control d-block mt-1" value="02:00">
   
-            <button onclick="deleteEvent()" class="btn btn-primary d-block mt-3">Delete</button>
+            <button onclick="deleteEvent()" class="btn btn-primary d-block mt-3 mb-3">Delete</button>
+
+            <div id="delete-danger" class="alert alert-danger d-none" role="alert">
+              Something went wrong, the event you tried to delete may be already deleted!
+            </div>
+            <div id="delete-success" class="alert alert-success d-none" role="alert">
+              Event marked as deleted successfully!
+            </div>
           </div>
 
         </div>

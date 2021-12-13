@@ -7,10 +7,6 @@ router.use('/upload', require('./upload'));
 const Event = require('../models/event');
 
 router.get('/search', async (req, res) => {
-    if(req.query.name) {
-
-    }
-    await codeToLongCommonName('code');
     res.sendFile(path.join(__dirname, '../public/search.html'));
 });
 
@@ -41,8 +37,21 @@ router.get('/query', async (req, res) => {
         transactionTime: {
             $lte: new Date(`${query.date}T${query.time}:00Z`),
         },
+        $or: [{
+            deletedAt: {
+                $gte: new Date(`${query.date}T${query.time}:00Z`)
+            }
+        }, {
+            deletedAt: null
+        }],
     };
-    res.send((await Event.find(dbQuery).sort({validStartTime: -1}))[0]);
+    let doc = ((await Event.find(dbQuery).sort({validStartTime: -1}).lean())[0]);
+    if(doc){
+        doc.loincDescription =  await codeToLongCommonName(doc.loincNum);
+        res.send(doc);
+    }
+    else
+        res.send({});
 });
 
 router.post('/delete', async (req, res) => {
@@ -87,7 +96,7 @@ async function codeToLongCommonName(code) {
         return response.ok ? (await response.json()).parameter[1].valueString : null;
     }
     catch(err) {
-        console.log(err)
+        return 'not found'
     }
 }
 

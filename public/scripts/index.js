@@ -106,6 +106,7 @@ async function query() {
             throw 'bad';
     }
     catch(err) {
+        console.log(err)
     }
 }
 

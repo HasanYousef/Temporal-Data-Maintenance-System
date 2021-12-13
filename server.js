@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 const app = express();
 app.listen(process.env.PORT || 3000, () => { console.log('Server Up') });
 
-
 // setting the images and styles folder to public
 app.use(express.static('public'));
 

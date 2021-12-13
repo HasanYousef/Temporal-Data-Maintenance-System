@@ -42,18 +42,18 @@
           <hr class="mt-0 mb-4">
 
           <label class="d-block mt-3">Time of query (default: now)</label>
-          <input type="date" id="date" class="form-control" value="2020-12-22">
-          <input type="time" id="time" class="form-control d-block mt-1" value="15:00">
+          <input type="date" id="date" class="form-control">
+          <input type="time" id="time" class="form-control d-block mt-1">
 
           <label for="patientName" class="d-block mt-3">Patient name</label>
-          <input class="form-control" id="patientName" placeholder="e.g. BoJack Horseman" value="Eyal Rothman">
+          <input class="form-control" id="patientName" placeholder="e.g. BoJack Horseman">
 
           <label for="loincCode" class="d-block mt-3">LOINC code</label>
-          <input class="form-control" id="loincCode" placeholder="e.g. 11218-5" value="14743-9">
+          <input class="form-control" id="loincCode" placeholder="e.g. 11218-5">
           
           <label  class="d-block mt-3">Valid start time</label>
-          <input type="date" id="validDate" class="form-control" value="2020-12-22">
-          <input type="time" id="validTime" class="form-control d-block mt-1" value="21:00">
+          <input type="date" id="validDate" class="form-control">
+          <input type="time" id="validTime" class="form-control d-block mt-1">
 
           <button id="search-button" onclick="query()" class="btn btn-primary d-block mt-3">
             Search

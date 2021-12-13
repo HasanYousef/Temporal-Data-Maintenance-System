@@ -23,10 +23,35 @@ router.get('/all', async (req, res) => {
 });
 
 router.get('/query', async (req, res) => {
-    const query = req.query;
+    let query = req.query;
     const name = query.patientName.split(' ');
     if(name.length !== 2)
         return {};
+
+    let today = new Date();
+    let hh = String(today.getHours());
+    let min = String(today.getMinutes());
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    hh = hh.length === 1 ? '0' + hh : hh;
+    min = min.length === 1 ? '0' + min : min;
+    if(!query.date){
+        query.date = today;
+        query.time = hh + ':' + min;
+    }
+    else if(!query.time) {
+        query.time = '23:59';
+    }
+    
+    if(!query.validDate){
+        query.validDate = today;
+        query.validTime = hh + ':' + min;
+    }
+    else if(!query.validTime) {
+        query.validTime = '23:59';
+    }
     let dbQuery = {
         firstName: name[0],
         lastName: name[1],

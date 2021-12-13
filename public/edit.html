@@ -47,13 +47,13 @@
                 <input type="file" accept=".xlsx" class="form-control-file" id="uploadFile">
               </div>
               <div class="form-check">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="addChoice" value="add" checked>
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="addChoice" checked>
                   <label class="form-check-label" for="addChoice">
                     Add to the existing data
                   </label>
               </div>
               <div class="form-check" style="margin-bottom: 16px;">
-                  <input class="form-check-input" type="radio" name="exampleRadios" id="replaceChoice" value="replace">
+                  <input class="form-check-input" type="radio" name="exampleRadios" id="replaceChoice">
                   <label class="form-check-label" for="replaceChoice">
                     Replace the existing data
                   </label>
@@ -74,14 +74,14 @@
             <hr class="mt-0 mb-4">
 
             <label for="patientName" class="d-block mt-3">Patient name</label>
-            <input class="form-control" id="patientName" placeholder="e.g. BoJack Horseman" value="Eyal Rothman">
+            <input class="form-control" id="patientName" placeholder="e.g. BoJack Horseman">
   
             <label for="loincCode" class="d-block mt-3">LOINC code</label>
-            <input class="form-control" id="loincCode" placeholder="e.g. 11218-5" value="14743-9">
+            <input class="form-control" id="loincCode" placeholder="e.g. 11218-5">
             
             <label  class="d-block mt-3">Valid start time</label>
-            <input type="date" id="validDate" class="form-control" value="2018-05-18">
-            <input type="time" id="validTime" class="form-control d-block mt-1" value="02:00">
+            <input type="date" id="validDate" class="form-control">
+            <input type="time" id="validTime" class="form-control d-block mt-1">
   
             <button onclick="deleteEvent()" class="btn btn-primary d-block mt-3 mb-3">Delete</button>
 

@@ -15,4 +15,4 @@
 
 #### Authors
 
-1. Mohammad Ektelat & Hasan Yousef
+Mohammad Ektelat & Hasan Yousef

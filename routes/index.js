@@ -70,7 +70,8 @@ router.get('/query', async (req, res) => {
             deletedAt: null
         }],
     };
-    let doc = ((await Event.find(dbQuery).sort({validStartTime: -1}).lean())[0]);
+    console.log((await Event.find(dbQuery).sort({validStartTime: -1, transactionTime: -1}).lean()))
+    let doc = ((await Event.find(dbQuery).sort({validStartTime: -1, transactionTime: -1}).lean())[0]);
     if(doc){
         doc.loincDescription =  await codeToLongCommonName(doc.loincNum);
         res.send(doc);

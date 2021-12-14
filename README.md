@@ -12,3 +12,7 @@
 1. run the following command in the terminal: `npm install -g nodemon`.
 1. After installing all the dependencies, run the following command in your terminal: `npm run start` to run the server on http://localhost:3000.
 1. Go to http://localhost:3000.
+
+#### Authors
+
+1. Mohammad Ektelat & Hasan Yousef
